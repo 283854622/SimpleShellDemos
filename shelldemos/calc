@@ -1,0 +1,33 @@
+#!/bin/bash
+
+#calc --add 3 4 输出7
+#calc --sub 3 4 输出-1
+#calc --mul 3 4 输出12
+#calc --div 3 4 输出0
+#calc --mod 3 4 输出3
+#否则参数错误
+
+if [[ $1 = "--add" ]];then
+	echo $(($2+$3))
+
+elif [[ $1 = "--sub" ]];then
+	echo $(($2-$3))
+
+elif [[ $1 = "--mul" ]];then
+	echo $(($2*$3))
+
+elif [[ $1 = "--div" ]];then
+	echo $(($2/$3))
+
+elif [[ $1 = "--mod" ]];then
+	echo $(($2%$3))
+
+else
+	echo "stupid,unknown operand:$1"
+fi
+
+
+
+
+
+

@@ -1,0 +1,5 @@
+#!/bin/bash
+#↑声明shell解释器位置
+
+word="Hello Shell"
+echo "Hello Shell!"

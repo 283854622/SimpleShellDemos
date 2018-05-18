@@ -1,0 +1,31 @@
+#!/bin/bash
+# 生成1000以内的随机数，秩序让用户猜，直到猜对或提前中止（用户输入fuck off）为止
+
+#生成随机数
+num=`rand --max 1000`
+#echo $num
+
+while true
+do
+	read -p "please enter a number between 0 and 1000:" guess
+
+	#用户输入fuck off则提前退出
+	if [[ $guess = "fuck off" ]];then 
+		echo "the answer is:$num!"
+		break
+	fi
+	
+	#判断用户的猜想是否正确
+	if [[ $guess -gt $num ]];then 
+		echo "too big!"
+
+	elif [[ $guess -lt $num ]];then 
+		echo "too small!"
+
+	else 
+		echo "well done!the answer is:$num!"
+		break
+	fi
+done
+
+echo "GAME OVER!"

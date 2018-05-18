@@ -1,0 +1,54 @@
+#!/bin/bash
+#mycp ~/file1 ~/file2 覆盖式拷贝
+#mycp -a ~/file1 ~/file2 追加式拷贝
+
+docopy(){
+#判断是追加还是覆盖
+append=0
+if [[ $1 = "-a" ]];then
+	append=1
+	srcfile=$2
+	targetfile=$3
+else
+	append=0
+	srcfile=$1
+	targetfile=$2
+fi
+
+#判断源文件是否存在
+if [[ ! -e $srcfile ]];then
+	echo "$srcfile does not exist,fuck off!"
+	return 0
+fi
+
+#如果目标文件不存在则创建
+if [[ ! -e $targetfile ]];then
+	touch $targetfile
+fi
+
+#写入
+if [[ $append -eq 1 ]];then
+	cat $srcfile >> $targetfile
+else
+	cat $srcfile > $targetfile
+fi
+
+#输出结果
+echo "$srcfile successfully written to $targetfile!"
+echo -n "read $targetfile now?[y/n]:"
+read temp
+
+if [[ $temp = "y" ]];then
+	echo ====================
+	cat $targetfile
+	echo ====================
+fi
+
+
+}
+
+docopy $1 $2 $3
+
+
+
+

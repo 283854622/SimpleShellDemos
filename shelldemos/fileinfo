@@ -1,0 +1,55 @@
+#!/bin/bash
+
+#fileinfo ~/shit =>是否存在，文件类型，文件权限，文件内容
+
+showFileInfo(){
+
+#判断一下位置是否存在
+if [[ ! -e $1 ]];then
+	echo "stupid,file $1 does not exist!"
+
+	#函数的异常结束,1则是正常结束
+	return 0
+fi
+
+#检测文件类型
+if [[ -d $1 ]];then
+	echo "$1 is a directory"
+elif [[ -f $1 ]];then
+	echo "$1 is a normal data file"
+else
+	echo "$1 is not a data file or directory"
+fi
+
+#检测文件权限
+if [[ -r $1 ]];then
+	echo -n "readable "
+else
+	echo -n "NOT-readable "
+fi
+
+if [[ -w $1 ]];then
+	echo -n "writable "
+else
+	echo -n "NOT-writable "
+fi
+
+if [[ -x $1 ]];then
+	echo "executable"
+else
+	echo "NOT-executable"
+fi
+
+
+
+#输出文件内容
+echo ""
+echo "content:"
+echo ====================
+cat $1
+echo ====================
+
+
+}
+
+showFileInfo $1
